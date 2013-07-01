@@ -24,6 +24,15 @@
 		1BF81277176D17A9005308B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF8124F176D17A9005308B0 /* Foundation.framework */; };
 		1BF8127F176D17A9005308B0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BF8127D176D17A9005308B0 /* InfoPlist.strings */; };
 		1BF81282176D17A9005308B0 /* jocrofflineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF81281176D17A9005308B0 /* jocrofflineTests.m */; };
+		1BF81293176D1CA9005308B0 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF8128C176D1CA9005308B0 /* bg.png */; };
+		1BF81294176D1CA9005308B0 /* bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF8128D176D1CA9005308B0 /* bottom.png */; };
+		1BF81295176D1CA9005308B0 /* camera_crop_height.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF8128E176D1CA9005308B0 /* camera_crop_height.png */; };
+		1BF81296176D1CA9005308B0 /* camera_crop_width.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF8128F176D1CA9005308B0 /* camera_crop_width.png */; };
+		1BF81297176D1CA9005308B0 /* ic_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF81290176D1CA9005308B0 /* ic_launcher.png */; };
+		1BF81298176D1CA9005308B0 /* indicator_autocrop.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF81291176D1CA9005308B0 /* indicator_autocrop.png */; };
+		1BF81299176D1CA9005308B0 /* top.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF81292176D1CA9005308B0 /* top.png */; };
+		1BFEE7431770B8CC00897880 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BFEE7421770B8CC00897880 /* libsqlite3.0.dylib */; };
+		1BFEE7451770B8E100897880 /* jocr2.sql in Resources */ = {isa = PBXBuildFile; fileRef = 1BFEE7441770B8E100897880 /* jocr2.sql */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +69,15 @@
 		1BF8127E176D17A9005308B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1BF81280176D17A9005308B0 /* jocrofflineTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jocrofflineTests.h; sourceTree = "<group>"; };
 		1BF81281176D17A9005308B0 /* jocrofflineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = jocrofflineTests.m; sourceTree = "<group>"; };
+		1BF8128C176D1CA9005308B0 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		1BF8128D176D1CA9005308B0 /* bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottom.png; sourceTree = "<group>"; };
+		1BF8128E176D1CA9005308B0 /* camera_crop_height.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_crop_height.png; sourceTree = "<group>"; };
+		1BF8128F176D1CA9005308B0 /* camera_crop_width.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_crop_width.png; sourceTree = "<group>"; };
+		1BF81290176D1CA9005308B0 /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
+		1BF81291176D1CA9005308B0 /* indicator_autocrop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indicator_autocrop.png; sourceTree = "<group>"; };
+		1BF81292176D1CA9005308B0 /* top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top.png; sourceTree = "<group>"; };
+		1BFEE7421770B8CC00897880 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		1BFEE7441770B8E100897880 /* jocr2.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = jocr2.sql; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BFEE7431770B8CC00897880 /* libsqlite3.0.dylib in Frameworks */,
 				1BF8124E176D17A9005308B0 /* UIKit.framework in Frameworks */,
 				1BF81250176D17A9005308B0 /* Foundation.framework in Frameworks */,
 				1BF81252176D17A9005308B0 /* CoreGraphics.framework in Frameworks */,
@@ -89,6 +108,7 @@
 		1BF81241176D17A9005308B0 = {
 			isa = PBXGroup;
 			children = (
+				1BFEE7421770B8CC00897880 /* libsqlite3.0.dylib */,
 				1BF81253176D17A9005308B0 /* jocroffline */,
 				1BF8127A176D17A9005308B0 /* jocrofflineTests */,
 				1BF8124C176D17A9005308B0 /* Frameworks */,
@@ -119,6 +139,8 @@
 		1BF81253176D17A9005308B0 /* jocroffline */ = {
 			isa = PBXGroup;
 			children = (
+				1BFEE7441770B8E100897880 /* jocr2.sql */,
+				1BF8128B176D1CA9005308B0 /* drawable-hdpi */,
 				1BF8125C176D17A9005308B0 /* AppDelegate.h */,
 				1BF8125D176D17A9005308B0 /* AppDelegate.m */,
 				1BF81265176D17A9005308B0 /* MainStoryboard_iPhone.storyboard */,
@@ -161,6 +183,20 @@
 				1BF8127D176D17A9005308B0 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1BF8128B176D1CA9005308B0 /* drawable-hdpi */ = {
+			isa = PBXGroup;
+			children = (
+				1BF8128C176D1CA9005308B0 /* bg.png */,
+				1BF8128D176D1CA9005308B0 /* bottom.png */,
+				1BF8128E176D1CA9005308B0 /* camera_crop_height.png */,
+				1BF8128F176D1CA9005308B0 /* camera_crop_width.png */,
+				1BF81290176D1CA9005308B0 /* ic_launcher.png */,
+				1BF81291176D1CA9005308B0 /* indicator_autocrop.png */,
+				1BF81292176D1CA9005308B0 /* top.png */,
+			);
+			path = "drawable-hdpi";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +276,14 @@
 				1BF81264176D17A9005308B0 /* Default-568h@2x.png in Resources */,
 				1BF81267176D17A9005308B0 /* MainStoryboard_iPhone.storyboard in Resources */,
 				1BF8126A176D17A9005308B0 /* MainStoryboard_iPad.storyboard in Resources */,
+				1BF81293176D1CA9005308B0 /* bg.png in Resources */,
+				1BF81294176D1CA9005308B0 /* bottom.png in Resources */,
+				1BF81295176D1CA9005308B0 /* camera_crop_height.png in Resources */,
+				1BF81296176D1CA9005308B0 /* camera_crop_width.png in Resources */,
+				1BF81297176D1CA9005308B0 /* ic_launcher.png in Resources */,
+				1BF81298176D1CA9005308B0 /* indicator_autocrop.png in Resources */,
+				1BF81299176D1CA9005308B0 /* top.png in Resources */,
+				1BFEE7451770B8E100897880 /* jocr2.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +511,7 @@
 				1BF81287176D17A9005308B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1BF81288176D17A9005308B0 /* Build configuration list for PBXNativeTarget "jocrofflineTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +520,7 @@
 				1BF8128A176D17A9005308B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

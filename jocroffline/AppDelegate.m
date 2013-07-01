@@ -10,9 +10,29 @@
 
 @implementation AppDelegate
 
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+     
+    databaseName = @"jocr2";
+    
+	// Get the path to the documents directory and append the databaseName
+	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDir = [documentPaths objectAtIndex:0];
+	databasePath = [documentsDir stringByAppendingPathComponent:databaseName];
+    
+	// Execute the "checkAndCreateDatabase" function
+	[self checkAndCreateDatabase];
+    
+	// Query the database for all animal records and construct the "animals" array
+	//[self readAnimalsFromDatabase];
+    
+	// Configure and show the window
+	//[window addSubview:[navigationController view]];
+	//[window makeKeyAndVisible];
+    
+    
     return YES;
 }
 							
@@ -42,5 +62,32 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+-(void) checkAndCreateDatabase{
+	// Check if the SQL database has already been saved to the users phone, if not then copy it over
+	BOOL success;
+    
+	// Create a FileManager object, we will use this to check the status
+	// of the database and to copy it over if required
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+	// Check if the database has already been created in the users filesystem
+	success = [fileManager fileExistsAtPath:databasePath];
+    
+    NSLog(success ? @"Y":@"N");
+	// If the database already exists then return without doing anything
+	if(success) return;
+    
+	// If not then proceed to copy the database from the application to the users filesystem
+    
+	// Get the path to the database in the application package
+	NSString *databasePathFromApp = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:databaseName];
+    
+	// Copy the database from the package to the users filesystem
+	[fileManager copyItemAtPath:databasePathFromApp toPath:databasePath error:nil];
+    
+	//[fileManager release];
+}
+
 
 @end

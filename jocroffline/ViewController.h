@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITextField *textField1;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (copy,nonatomic) NSString *searchterm;
+@property (copy,nonatomic) NSArray *resultArray;
+@property (copy,nonatomic) NSArray *theArray;
+@property (weak, nonatomic) IBOutlet UITableView *table1;
+
+- (IBAction)enter:(id)sender;
+- (IBAction)ocrbutton:(id)sender;
+
+
+
 
 @end
