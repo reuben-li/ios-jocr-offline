@@ -32,6 +32,11 @@
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
     
+    Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"jpn"];
+    [tesseract setImage:[UIImage imageNamed:@"ninja.png"]];
+    [tesseract recognize];
+    
+    NSLog(@"%@", [tesseract recognizedText]);
     
 }
 
@@ -58,15 +63,17 @@
     NSString *aName=@"jaja";
 	// Init the animals Array
 //	animals = [[NSMutableArray alloc] init];
-    NSString *databaseName = @"jocr2";
+//    NSString *databaseName = @"jocr2";
  //   NSMutableArray *resultArray = [[NSMutableArray alloc]init];
 resultArray = [[NSMutableArray alloc]init];
-    //array to store results
- //   NSMutableArray *result = [NSMutableArray array];
-	// Get the path to the documents directory and append the databaseName
-	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *documentsDir = [documentPaths objectAtIndex:0];
-	NSString *databasePath = [documentsDir stringByAppendingPathComponent:databaseName];	// Open the database from the users filessytem
+// Get the path to the documents directory and append the databaseName
+//	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//	NSString *documentsDir = [documentPaths objectAtIndex:0];
+//	NSString *databasePath = [documentsDir stringByAppendingPathComponent:databaseName];	// Open the database from the users filessytem
+    
+    
+    NSArray *arrayPathComponent=[NSArray arrayWithObjects:NSHomeDirectory(),@"Documents",@"jocr2.sqlite",nil];
+    NSString *databasePath=[NSString pathWithComponents:arrayPathComponent];
   	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
         NSLog(@"yes");
 		// Setup the SQL Statement and compile it for faster access
@@ -79,10 +86,7 @@ resultArray = [[NSMutableArray alloc]init];
 				// Read the data from the result row
 			aName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)];
                  [resultArray addObject:aName];
-				//NSString *aDescription = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 2)];
-				//NSString *aImageUrl = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 3)];
-               //  [result addObject:row];
-             }
+            }
             
 		}
         
@@ -91,8 +95,6 @@ resultArray = [[NSMutableArray alloc]init];
         
 	}
 	sqlite3_close(database);
-  //  self.label1.text = aName;
-   // NSLog(resultArray[5]);
 	[_table1 reloadData];
     
        
@@ -106,7 +108,72 @@ resultArray = [[NSMutableArray alloc]init];
     imagePicker.delegate = self;
     [self presentModalViewController:imagePicker animated:YES];
    // [picker release];
+   
+}
+
+- (IBAction)find:(id)sender {
     
+    self.searchterm = self.textField1.text;
+    NSString *nameString = self.searchterm;
+    if ([nameString length]==0){
+        nameString = @"World";
+    }
+    
+    
+    // Setup the database object
+	sqlite3 *database;
+    NSString *aName=@"jaja";
+	// Init the animals Array
+    //	animals = [[NSMutableArray alloc] init];
+    //   NSMutableArray *resultArray = [[NSMutableArray alloc]init];
+    resultArray = [[NSMutableArray alloc]init];
+    // Get the path to the documents directory and append the databaseName
+//    NSString *databaseName = @"jocr2";
+//	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//	NSString *documentsDir = [documentPaths objectAtIndex:0];
+//	NSString *databasePath = [documentsDir stringByAppendingPathComponent:databaseName];
+
+    NSArray *arrayPathComponent=[NSArray arrayWithObjects:NSHomeDirectory(),@"Documents",@"jocr2.sqlite",nil];
+    NSString *databasePath=[NSString pathWithComponents:arrayPathComponent];
+    
+    
+    NSLog(databasePath);// Open the database from the users filessytem
+  	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
+        NSLog(@"database OK");
+		// Setup the SQL Statement and compile it for faster access
+        NSString *sqls = [NSString stringWithFormat:@"SELECT * FROM data2 WHERE _id MATCH \"%@\"",
+                          nameString ];
+		const char *sqlStatement = [sqls UTF8String];
+		sqlite3_stmt *compiledStatement;
+        NSLog(sqls);
+        if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
+			// Loop through the results and add them to the feeds array
+             NSLog(@"query OK");
+			while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+				// Read the data from the result row
+                aName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)];
+            //    NSLog(aName);
+                [resultArray addObject:aName];
+         
+            }
+            
+		}
+        else
+        {
+      //  NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(database));
+        }
+		// Release the compiled statement from memory
+		sqlite3_finalize(compiledStatement);
+        
+	}
+	sqlite3_close(database);
+	[_table1 reloadData];
+   // NSLog(resultArray[1]);
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    //put code for store image
 }
 
 
@@ -132,10 +199,13 @@ resultArray = [[NSMutableArray alloc]init];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
-    
+    cell.textLabel.font = [UIFont fontWithName:@"ArialMT" size:12];
+    cell.textLabel.numberOfLines = 2;
+    cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
     cell.textLabel.text = [resultArray objectAtIndex:indexPath.row];
     return cell;
 }
+
 
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "tesseract.h"
 
 @interface ViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextField *textField1;
@@ -19,6 +20,7 @@
 - (IBAction)enter:(id)sender;
 - (IBAction)ocrbutton:(id)sender;
 
+- (IBAction)find:(id)sender;
 
 
 

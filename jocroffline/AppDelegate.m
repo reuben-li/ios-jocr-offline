@@ -15,14 +15,16 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
      
-    databaseName = @"jocr2";
+    databaseName = @"jocr2.sqlite";
     
 	// Get the path to the documents directory and append the databaseName
-	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *documentsDir = [documentPaths objectAtIndex:0];
-	databasePath = [documentsDir stringByAppendingPathComponent:databaseName];
+//	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//	NSString *documentsDir = [documentPaths objectAtIndex:0];
+//	databasePath = [documentsDir stringByAppendingPathComponent:databaseName];
     
-	// Execute the "checkAndCreateDatabase" function
+        NSArray *arrayPathComponent=[NSArray arrayWithObjects:NSHomeDirectory(),@"Documents",@"jocr2.sqlite",nil];
+        databasePath=[NSString pathWithComponents:arrayPathComponent];
+
 	[self checkAndCreateDatabase];
     
 	// Query the database for all animal records and construct the "animals" array
@@ -74,7 +76,7 @@
 	// Check if the database has already been created in the users filesystem
 	success = [fileManager fileExistsAtPath:databasePath];
     
-    NSLog(success ? @"Y":@"N");
+    NSLog(success ? @"DB exists":@"DB doesn't exist");
 	// If the database already exists then return without doing anything
 	if(success) return;
     

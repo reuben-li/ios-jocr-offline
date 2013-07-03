@@ -33,7 +33,6 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pfi-fM-uEk">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="Ty8-7d-gFR"/>
                                     <constraint firstAttribute="height" constant="36" id="y9L-ZQ-UNI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -48,10 +47,24 @@
                                     <segue destination="7GU-04-gk3" kind="modal" id="ua2-v9-smm"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="8Qb-Wt-wKd">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7n-7g-QrX">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="236" id="NRj-9v-U25"/>
+                                    <constraint firstAttribute="height" constant="36" id="06o-1P-rdx"/>
+                                    <constraint firstAttribute="width" constant="48" id="ZP4-0d-E2x"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Find">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="find:" destination="2" eventType="touchUpInside" id="Mjr-Z2-HbQ"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="8Qb-Wt-wKd">
                                 <color key="minimumTrackTintColor" red="0.62024319556451613" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </slider>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bottom.png" translatesAutoresizingMaskIntoConstraints="NO" id="qXw-CJ-Fq8">
@@ -65,6 +78,9 @@
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter search term..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ovi-nA-0Hp">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="236" id="Uxx-p0-tOZ"/>
+                                </constraints>
                                 <color key="textColor" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -76,22 +92,25 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="I7n-7g-QrX" firstAttribute="top" secondItem="3" secondAttribute="top" constant="61" id="0CL-Sf-vIF"/>
                             <constraint firstItem="Pfi-fM-uEk" firstAttribute="trailing" secondItem="CAb-b2-Pi6" secondAttribute="trailing" type="default" id="2nj-9I-axj"/>
+                            <constraint firstItem="I7n-7g-QrX" firstAttribute="leading" secondItem="Ovi-nA-0Hp" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="3mc-nN-ClX"/>
                             <constraint firstItem="CAb-b2-Pi6" firstAttribute="top" secondItem="Pfi-fM-uEk" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="6pm-M1-Awq"/>
-                            <constraint firstItem="Ovi-nA-0Hp" firstAttribute="centerX" secondItem="HGN-y1-i5n" secondAttribute="centerX" type="default" id="6rg-W8-EAX"/>
+                            <constraint firstItem="qXw-CJ-Fq8" firstAttribute="centerX" secondItem="CAb-b2-Pi6" secondAttribute="centerX" type="default" id="8XV-Nm-A2e"/>
                             <constraint firstItem="HGN-y1-i5n" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="B6R-eD-coQ"/>
                             <constraint firstItem="qXw-CJ-Fq8" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="Hsn-Al-jjk"/>
                             <constraint firstItem="Ovi-nA-0Hp" firstAttribute="leading" secondItem="8Qb-Wt-wKd" secondAttribute="leading" type="default" id="IxH-QR-qDZ"/>
                             <constraint firstItem="8Qb-Wt-wKd" firstAttribute="leading" secondItem="CAb-b2-Pi6" secondAttribute="leading" type="default" id="OFf-29-eTo"/>
                             <constraint firstItem="qXw-CJ-Fq8" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="Zn8-OS-RSB"/>
+                            <constraint firstItem="I7n-7g-QrX" firstAttribute="trailing" secondItem="Pfi-fM-uEk" secondAttribute="trailing" type="default" id="aQE-L0-2BB"/>
+                            <constraint firstItem="I7n-7g-QrX" firstAttribute="leading" secondItem="Pfi-fM-uEk" secondAttribute="leading" type="default" id="fAT-se-Skd"/>
                             <constraint firstItem="Pfi-fM-uEk" firstAttribute="top" secondItem="Ovi-nA-0Hp" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="i4R-DE-PWt"/>
-                            <constraint firstItem="Ovi-nA-0Hp" firstAttribute="top" secondItem="3" secondAttribute="top" constant="64" id="kDc-aY-0eT"/>
                             <constraint firstItem="HGN-y1-i5n" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="lCc-y2-so9"/>
                             <constraint firstItem="qXw-CJ-Fq8" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="m5f-Eu-stQ"/>
+                            <constraint firstItem="I7n-7g-QrX" firstAttribute="centerY" secondItem="Ovi-nA-0Hp" secondAttribute="centerY" type="default" id="o83-Gt-1Dg"/>
                             <constraint firstItem="qXw-CJ-Fq8" firstAttribute="top" secondItem="CAb-b2-Pi6" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="qbY-10-SXN"/>
                             <constraint firstItem="Pfi-fM-uEk" firstAttribute="leading" secondItem="8Qb-Wt-wKd" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="roC-Qt-Ae5"/>
                             <constraint firstItem="8Qb-Wt-wKd" firstAttribute="top" secondItem="3" secondAttribute="top" constant="108" id="rzs-vg-ZnJ"/>
-                            <constraint firstItem="Ovi-nA-0Hp" firstAttribute="trailing" secondItem="Pfi-fM-uEk" secondAttribute="trailing" type="default" id="tt7-05-qQn"/>
                             <constraint firstItem="HGN-y1-i5n" firstAttribute="top" secondItem="3" secondAttribute="top" constant="-6" id="vhf-qD-X9D"/>
                         </constraints>
                     </view>
@@ -124,21 +143,6 @@
         <image name="bottom.png" width="640" height="54"/>
         <image name="top.png" width="640" height="113"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="enter:"/>
-                <relationship kind="action" name="ocrbutton:"/>
-                <relationship kind="outlet" name="label1" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="table1" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="textField1" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
