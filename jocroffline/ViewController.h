@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "tesseract.h"
+#import <MobileCoreServices/UTCoreTypes.h>
 
 @interface ViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextField *textField1;
@@ -16,11 +17,13 @@
 @property (copy,nonatomic) NSArray *resultArray;
 @property (copy,nonatomic) NSArray *theArray;
 @property (weak, nonatomic) IBOutlet UITableView *table1;
+@property (nonatomic, copy) NSArray *mediaTypes;
 
 - (IBAction)enter:(id)sender;
 - (IBAction)ocrbutton:(id)sender;
 
 - (IBAction)find:(id)sender;
+- (IBAction)ocr:(id)sender;
 
 
 

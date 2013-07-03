@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
+#import <MobileCoreServices/UTCoreTypes.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
     NSString *databaseName;

@@ -13,6 +13,7 @@
 @interface ViewController ()
 @end
 
+ 
 @implementation ViewController
 {
     NSMutableArray *resultArray;
@@ -102,14 +103,6 @@ resultArray = [[NSMutableArray alloc]init];
 
 
 
-- (IBAction)ocrbutton:(id)sender {
-    UIImagePickerController * imagePicker = [[UIImagePickerController alloc] init];
-    imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    imagePicker.delegate = self;
-    [self presentModalViewController:imagePicker animated:YES];
-   // [picker release];
-   
-}
 
 - (IBAction)find:(id)sender {
     
@@ -172,9 +165,11 @@ resultArray = [[NSMutableArray alloc]init];
     
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    //put code for store image
+- (IBAction)ocr:(id)sender {
+    [self startCameraControllerFromViewController: self
+                                    usingDelegate: self];
 }
+
 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
@@ -207,5 +202,100 @@ resultArray = [[NSMutableArray alloc]init];
 }
 
 
+- (BOOL) startCameraControllerFromViewController: (UIViewController*) controller
+                                   usingDelegate: (id <UIImagePickerControllerDelegate,
+                                                   UINavigationControllerDelegate>) delegate {
+    
+    if (([UIImagePickerController isSourceTypeAvailable:
+          UIImagePickerControllerSourceTypeCamera] == NO)
+        || (delegate == nil)
+        || (controller == nil))
+        return NO;
+    
+    
+    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+    cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    // Displays a control that allows the user to choose picture or
+    // movie capture, if both are available:
+    cameraUI.mediaTypes =
+    [UIImagePickerController availableMediaTypesForSourceType:
+     UIImagePickerControllerSourceTypeCamera];
+    
+ //   cameraUI.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+    
+    // Hides the controls for moving & scaling pictures, or for
+    // trimming movies. To instead show the controls, use YES.
+    cameraUI.allowsEditing = YES;
+    
+    cameraUI.delegate = delegate;
+    
+    [controller presentModalViewController: cameraUI animated: YES];
+    return YES;
+}
+
+
+- (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
+    
+    [[picker parentViewController] dismissModalViewControllerAnimated: YES];
+   // [picker release];
+}
+
+- (void) imagePickerController: (UIImagePickerController *) picker
+didFinishPickingMediaWithInfo: (NSDictionary *) info {
+    
+    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+    UIImage *originalImage, *editedImage, *imageToSave;
+    
+    // Handle a still image capture
+    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeImage, 0)
+        == kCFCompareEqualTo) {
+        
+        editedImage = (UIImage *) [info objectForKey:
+                                   UIImagePickerControllerEditedImage];
+        originalImage = (UIImage *) [info objectForKey:
+                                     UIImagePickerControllerOriginalImage];
+        
+        if (editedImage) {
+            imageToSave = editedImage;
+        } else {
+            imageToSave = originalImage;
+        }
+        
+        // Save the new image (original or edited) to the Camera Roll
+        UIImageWriteToSavedPhotosAlbum (imageToSave, nil, nil , nil);
+    }
+    
+    // Handle a movie capture
+    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeMovie, 0)
+        == kCFCompareEqualTo) {
+        
+        NSString *moviePath = [[info objectForKey:
+                                UIImagePickerControllerMediaURL] path];
+        
+        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (moviePath)) {
+            UISaveVideoAtPathToSavedPhotosAlbum (
+                                                 moviePath, nil, nil, nil);
+        }
+    }
+    
+    [[picker parentViewController] dismissModalViewControllerAnimated: YES];
+   // [picker release];
+}
+
+//image cropper
+- (UIImage *)cropImage:(UIImage *)oldImage {
+    CGSize imageSize = oldImage.size;
+    UIGraphicsBeginImageContextWithOptions( CGSizeMake( imageSize.width,
+                                                       imageSize.height - 200),
+                                           NO,
+                                           0.);
+    [oldImage drawAtPoint:CGPointMake( 0, -100)
+                blendMode:kCGBlendModeCopy
+                    alpha:1.];
+    UIImage *croppedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return croppedImage;
+}
 
 @end

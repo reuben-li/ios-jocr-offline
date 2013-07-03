@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BA29D0217847C8600B334BA /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA29D0117847C8600B334BA /* MobileCoreServices.framework */; };
 		1BA65CE317810EE400A8FE2E /* Tesseract.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BA65C4817810EE300A8FE2E /* Tesseract.mm */; };
 		1BA65CE417810EE400A8FE2E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1BA65C4917810EE300A8FE2E /* LICENSE */; };
 		1BA65CE517810EE400A8FE2E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1BA65C4A17810EE300A8FE2E /* README.md */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1BA29D0117847C8600B334BA /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		1BA65C4717810EE300A8FE2E /* Tesseract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tesseract.h; sourceTree = "<group>"; };
 		1BA65C4817810EE300A8FE2E /* Tesseract.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Tesseract.mm; sourceTree = "<group>"; };
 		1BA65C4917810EE300A8FE2E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BA29D0217847C8600B334BA /* MobileCoreServices.framework in Frameworks */,
 				1BFEE7431770B8CC00897880 /* libsqlite3.0.dylib in Frameworks */,
 				1BF8124E176D17A9005308B0 /* UIKit.framework in Frameworks */,
 				1BF81250176D17A9005308B0 /* Foundation.framework in Frameworks */,
@@ -477,6 +480,7 @@
 		1BF81241176D17A9005308B0 = {
 			isa = PBXGroup;
 			children = (
+				1BA29D0117847C8600B334BA /* MobileCoreServices.framework */,
 				1BF81253176D17A9005308B0 /* jocroffline */,
 				1BFEE7421770B8CC00897880 /* libsqlite3.0.dylib */,
 				1BF8127A176D17A9005308B0 /* jocrofflineTests */,
