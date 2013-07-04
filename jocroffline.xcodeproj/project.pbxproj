@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B7CF99E178558C300DC5B7A /* UIImage+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7CF99D178558C300DC5B7A /* UIImage+Extras.m */; };
+		1B7CF9AB1785645900DC5B7A /* GKCropBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7CF9A01785645800DC5B7A /* GKCropBorderView.m */; };
+		1B7CF9AC1785645900DC5B7A /* GKImageCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7CF9A21785645800DC5B7A /* GKImageCropOverlayView.m */; };
+		1B7CF9AD1785645900DC5B7A /* GKImageCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7CF9A41785645800DC5B7A /* GKImageCropView.m */; };
+		1B7CF9AE1785645900DC5B7A /* GKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7CF9A61785645800DC5B7A /* GKImageCropViewController.m */; };
+		1B7CF9AF1785645900DC5B7A /* GKImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7CF9A81785645800DC5B7A /* GKImagePicker.m */; };
+		1B7CF9B01785645900DC5B7A /* GKResizeableCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7CF9AA1785645800DC5B7A /* GKResizeableCropOverlayView.m */; };
+		1B7CF9B91785646400DC5B7A /* PLCameraSheetButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7CF9B11785646400DC5B7A /* PLCameraSheetButton.png */; };
+		1B7CF9BA1785646400DC5B7A /* PLCameraSheetButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7CF9B21785646400DC5B7A /* PLCameraSheetButton@2x.png */; };
+		1B7CF9BB1785646400DC5B7A /* PLCameraSheetButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7CF9B31785646400DC5B7A /* PLCameraSheetButtonPressed.png */; };
+		1B7CF9BC1785646400DC5B7A /* PLCameraSheetButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7CF9B41785646400DC5B7A /* PLCameraSheetButtonPressed@2x.png */; };
+		1B7CF9BD1785646400DC5B7A /* PLCameraSheetDoneButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7CF9B51785646400DC5B7A /* PLCameraSheetDoneButton.png */; };
+		1B7CF9BE1785646400DC5B7A /* PLCameraSheetDoneButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7CF9B61785646400DC5B7A /* PLCameraSheetDoneButton@2x.png */; };
+		1B7CF9BF1785646400DC5B7A /* PLCameraSheetDoneButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7CF9B71785646400DC5B7A /* PLCameraSheetDoneButtonPressed.png */; };
+		1B7CF9C01785646400DC5B7A /* PLCameraSheetDoneButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7CF9B81785646400DC5B7A /* PLCameraSheetDoneButtonPressed@2x.png */; };
 		1BA29D0217847C8600B334BA /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA29D0117847C8600B334BA /* MobileCoreServices.framework */; };
 		1BA65CE317810EE400A8FE2E /* Tesseract.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BA65C4817810EE300A8FE2E /* Tesseract.mm */; };
 		1BA65CE417810EE400A8FE2E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1BA65C4917810EE300A8FE2E /* LICENSE */; };
@@ -56,6 +71,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B7CF99C178558C300DC5B7A /* UIImage+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extras.h"; sourceTree = "<group>"; };
+		1B7CF99D178558C300DC5B7A /* UIImage+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extras.m"; sourceTree = "<group>"; };
+		1B7CF99F1785645800DC5B7A /* GKCropBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GKCropBorderView.h; path = GKClasses/GKCropBorderView.h; sourceTree = "<group>"; };
+		1B7CF9A01785645800DC5B7A /* GKCropBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GKCropBorderView.m; path = GKClasses/GKCropBorderView.m; sourceTree = "<group>"; };
+		1B7CF9A11785645800DC5B7A /* GKImageCropOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GKImageCropOverlayView.h; path = GKClasses/GKImageCropOverlayView.h; sourceTree = "<group>"; };
+		1B7CF9A21785645800DC5B7A /* GKImageCropOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GKImageCropOverlayView.m; path = GKClasses/GKImageCropOverlayView.m; sourceTree = "<group>"; };
+		1B7CF9A31785645800DC5B7A /* GKImageCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GKImageCropView.h; path = GKClasses/GKImageCropView.h; sourceTree = "<group>"; };
+		1B7CF9A41785645800DC5B7A /* GKImageCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GKImageCropView.m; path = GKClasses/GKImageCropView.m; sourceTree = "<group>"; };
+		1B7CF9A51785645800DC5B7A /* GKImageCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GKImageCropViewController.h; path = GKClasses/GKImageCropViewController.h; sourceTree = "<group>"; };
+		1B7CF9A61785645800DC5B7A /* GKImageCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GKImageCropViewController.m; path = GKClasses/GKImageCropViewController.m; sourceTree = "<group>"; };
+		1B7CF9A71785645800DC5B7A /* GKImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GKImagePicker.h; path = GKClasses/GKImagePicker.h; sourceTree = "<group>"; };
+		1B7CF9A81785645800DC5B7A /* GKImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GKImagePicker.m; path = GKClasses/GKImagePicker.m; sourceTree = "<group>"; };
+		1B7CF9A91785645800DC5B7A /* GKResizeableCropOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GKResizeableCropOverlayView.h; path = GKClasses/GKResizeableCropOverlayView.h; sourceTree = "<group>"; };
+		1B7CF9AA1785645800DC5B7A /* GKResizeableCropOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GKResizeableCropOverlayView.m; path = GKClasses/GKResizeableCropOverlayView.m; sourceTree = "<group>"; };
+		1B7CF9B11785646400DC5B7A /* PLCameraSheetButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PLCameraSheetButton.png; path = GKImages/PLCameraSheetButton.png; sourceTree = "<group>"; };
+		1B7CF9B21785646400DC5B7A /* PLCameraSheetButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PLCameraSheetButton@2x.png"; path = "GKImages/PLCameraSheetButton@2x.png"; sourceTree = "<group>"; };
+		1B7CF9B31785646400DC5B7A /* PLCameraSheetButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PLCameraSheetButtonPressed.png; path = GKImages/PLCameraSheetButtonPressed.png; sourceTree = "<group>"; };
+		1B7CF9B41785646400DC5B7A /* PLCameraSheetButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PLCameraSheetButtonPressed@2x.png"; path = "GKImages/PLCameraSheetButtonPressed@2x.png"; sourceTree = "<group>"; };
+		1B7CF9B51785646400DC5B7A /* PLCameraSheetDoneButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PLCameraSheetDoneButton.png; path = GKImages/PLCameraSheetDoneButton.png; sourceTree = "<group>"; };
+		1B7CF9B61785646400DC5B7A /* PLCameraSheetDoneButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PLCameraSheetDoneButton@2x.png"; path = "GKImages/PLCameraSheetDoneButton@2x.png"; sourceTree = "<group>"; };
+		1B7CF9B71785646400DC5B7A /* PLCameraSheetDoneButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PLCameraSheetDoneButtonPressed.png; path = GKImages/PLCameraSheetDoneButtonPressed.png; sourceTree = "<group>"; };
+		1B7CF9B81785646400DC5B7A /* PLCameraSheetDoneButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PLCameraSheetDoneButtonPressed@2x.png"; path = "GKImages/PLCameraSheetDoneButtonPressed@2x.png"; sourceTree = "<group>"; };
 		1BA29D0117847C8600B334BA /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		1BA65C4717810EE300A8FE2E /* Tesseract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tesseract.h; sourceTree = "<group>"; };
 		1BA65C4817810EE300A8FE2E /* Tesseract.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Tesseract.mm; sourceTree = "<group>"; };
@@ -512,6 +549,26 @@
 		1BF81253176D17A9005308B0 /* jocroffline */ = {
 			isa = PBXGroup;
 			children = (
+				1B7CF9B11785646400DC5B7A /* PLCameraSheetButton.png */,
+				1B7CF9B21785646400DC5B7A /* PLCameraSheetButton@2x.png */,
+				1B7CF9B31785646400DC5B7A /* PLCameraSheetButtonPressed.png */,
+				1B7CF9B41785646400DC5B7A /* PLCameraSheetButtonPressed@2x.png */,
+				1B7CF9B51785646400DC5B7A /* PLCameraSheetDoneButton.png */,
+				1B7CF9B61785646400DC5B7A /* PLCameraSheetDoneButton@2x.png */,
+				1B7CF9B71785646400DC5B7A /* PLCameraSheetDoneButtonPressed.png */,
+				1B7CF9B81785646400DC5B7A /* PLCameraSheetDoneButtonPressed@2x.png */,
+				1B7CF99F1785645800DC5B7A /* GKCropBorderView.h */,
+				1B7CF9A01785645800DC5B7A /* GKCropBorderView.m */,
+				1B7CF9A11785645800DC5B7A /* GKImageCropOverlayView.h */,
+				1B7CF9A21785645800DC5B7A /* GKImageCropOverlayView.m */,
+				1B7CF9A31785645800DC5B7A /* GKImageCropView.h */,
+				1B7CF9A41785645800DC5B7A /* GKImageCropView.m */,
+				1B7CF9A51785645800DC5B7A /* GKImageCropViewController.h */,
+				1B7CF9A61785645800DC5B7A /* GKImageCropViewController.m */,
+				1B7CF9A71785645800DC5B7A /* GKImagePicker.h */,
+				1B7CF9A81785645800DC5B7A /* GKImagePicker.m */,
+				1B7CF9A91785645800DC5B7A /* GKResizeableCropOverlayView.h */,
+				1B7CF9AA1785645800DC5B7A /* GKResizeableCropOverlayView.m */,
 				1BA65CEC1781105200A8FE2E /* ninja.png */,
 				1BA65CEA17810EEE00A8FE2E /* tessdata */,
 				1BA65C4517810EE300A8FE2E /* tesseract-ios */,
@@ -525,6 +582,8 @@
 				1BF8126B176D17A9005308B0 /* ViewController.h */,
 				1BF8126C176D17A9005308B0 /* ViewController.m */,
 				1BF81254176D17A9005308B0 /* Supporting Files */,
+				1B7CF99C178558C300DC5B7A /* UIImage+Extras.h */,
+				1B7CF99D178558C300DC5B7A /* UIImage+Extras.m */,
 			);
 			path = jocroffline;
 			sourceTree = "<group>";
@@ -667,6 +726,14 @@
 				1BA65CE917810EE400A8FE2E /* README.md in Resources */,
 				1BA65CEB17810EEE00A8FE2E /* tessdata in Resources */,
 				1BA65CED1781105200A8FE2E /* ninja.png in Resources */,
+				1B7CF9B91785646400DC5B7A /* PLCameraSheetButton.png in Resources */,
+				1B7CF9BA1785646400DC5B7A /* PLCameraSheetButton@2x.png in Resources */,
+				1B7CF9BB1785646400DC5B7A /* PLCameraSheetButtonPressed.png in Resources */,
+				1B7CF9BC1785646400DC5B7A /* PLCameraSheetButtonPressed@2x.png in Resources */,
+				1B7CF9BD1785646400DC5B7A /* PLCameraSheetDoneButton.png in Resources */,
+				1B7CF9BE1785646400DC5B7A /* PLCameraSheetDoneButton@2x.png in Resources */,
+				1B7CF9BF1785646400DC5B7A /* PLCameraSheetDoneButtonPressed.png in Resources */,
+				1B7CF9C01785646400DC5B7A /* PLCameraSheetDoneButtonPressed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,6 +772,13 @@
 				1BF8125E176D17A9005308B0 /* AppDelegate.m in Sources */,
 				1BF8126D176D17A9005308B0 /* ViewController.m in Sources */,
 				1BA65CE317810EE400A8FE2E /* Tesseract.mm in Sources */,
+				1B7CF99E178558C300DC5B7A /* UIImage+Extras.m in Sources */,
+				1B7CF9AB1785645900DC5B7A /* GKCropBorderView.m in Sources */,
+				1B7CF9AC1785645900DC5B7A /* GKImageCropOverlayView.m in Sources */,
+				1B7CF9AD1785645900DC5B7A /* GKImageCropView.m in Sources */,
+				1B7CF9AE1785645900DC5B7A /* GKImageCropViewController.m in Sources */,
+				1B7CF9AF1785645900DC5B7A /* GKImagePicker.m in Sources */,
+				1B7CF9B01785645900DC5B7A /* GKResizeableCropOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

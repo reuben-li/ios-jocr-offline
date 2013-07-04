@@ -8,9 +8,10 @@
 
 #import "ViewController.h"
 #import "AppDelegate.h"
+#import "GKImagePicker.h"
 
 
-@interface ViewController ()
+@interface ViewController()
 @end
 
  
@@ -18,6 +19,7 @@
 {
     NSMutableArray *resultArray;
   //  NSArray *theArray;
+    
 }
 
 @synthesize searchterm = _searchterm;
@@ -121,10 +123,7 @@ resultArray = [[NSMutableArray alloc]init];
     //   NSMutableArray *resultArray = [[NSMutableArray alloc]init];
     resultArray = [[NSMutableArray alloc]init];
     // Get the path to the documents directory and append the databaseName
-//    NSString *databaseName = @"jocr2";
-//	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//	NSString *documentsDir = [documentPaths objectAtIndex:0];
-//	NSString *databasePath = [documentsDir stringByAppendingPathComponent:databaseName];
+
 
     NSArray *arrayPathComponent=[NSArray arrayWithObjects:NSHomeDirectory(),@"Documents",@"jocr2.sqlite",nil];
     NSString *databasePath=[NSString pathWithComponents:arrayPathComponent];
@@ -214,6 +213,21 @@ resultArray = [[NSMutableArray alloc]init];
     
     
     UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+ //   UIImagePickerController *cameraUI = [[GKImagePicker alloc] init];
+    
+    self.imagePicker = [[GKImagePicker alloc] init];
+    self.imagePicker.cropSize = CGSizeMake(296, 300);
+    self.imagePicker.delegate = self;
+	self.imagePicker.resizeableCropArea = YES;
+    
+
+    
+    //    [self presentModalViewController:self.imagePicker.imagePickerController animated:YES];
+
+
+    
+    
+    
     cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
     
     // Displays a control that allows the user to choose picture or
@@ -227,18 +241,18 @@ resultArray = [[NSMutableArray alloc]init];
     // Hides the controls for moving & scaling pictures, or for
     // trimming movies. To instead show the controls, use YES.
     cameraUI.allowsEditing = YES;
-    
     cameraUI.delegate = delegate;
-    
-    [controller presentModalViewController: cameraUI animated: YES];
+//    [self presentViewController:cameraUI animated:YES completion:nil];
+    [self presentViewController:self.imagePicker.imagePickerController animated:YES completion:nil];
+
+//    [controller presentViewController: cameraUI animated: YES];
     return YES;
 }
 
 
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
-    
-    [[picker parentViewController] dismissModalViewControllerAnimated: YES];
-   // [picker release];
+    [[picker presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+    return;
 }
 
 - (void) imagePickerController: (UIImagePickerController *) picker
@@ -255,47 +269,29 @@ didFinishPickingMediaWithInfo: (NSDictionary *) info {
                                    UIImagePickerControllerEditedImage];
         originalImage = (UIImage *) [info objectForKey:
                                      UIImagePickerControllerOriginalImage];
-        
+
         if (editedImage) {
             imageToSave = editedImage;
         } else {
             imageToSave = originalImage;
         }
         
+        
+               
+   //     CGSize targetSize = CGSizeMake(30, 40);
+        
+   //     imageToSave = [imageToSave imageByScalingAndCroppingForSize:(CGSize)targetSize];
+        
         // Save the new image (original or edited) to the Camera Roll
         UIImageWriteToSavedPhotosAlbum (imageToSave, nil, nil , nil);
     }
     
-    // Handle a movie capture
-    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeMovie, 0)
-        == kCFCompareEqualTo) {
-        
-        NSString *moviePath = [[info objectForKey:
-                                UIImagePickerControllerMediaURL] path];
-        
-        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (moviePath)) {
-            UISaveVideoAtPathToSavedPhotosAlbum (
-                                                 moviePath, nil, nil, nil);
-        }
-    }
     
-    [[picker parentViewController] dismissModalViewControllerAnimated: YES];
-   // [picker release];
-}
+    [[picker presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+        
+ //   [[picker parentViewController] dismissModalViewControllerAnimated: YES];
+ }
 
 //image cropper
-- (UIImage *)cropImage:(UIImage *)oldImage {
-    CGSize imageSize = oldImage.size;
-    UIGraphicsBeginImageContextWithOptions( CGSizeMake( imageSize.width,
-                                                       imageSize.height - 200),
-                                           NO,
-                                           0.);
-    [oldImage drawAtPoint:CGPointMake( 0, -100)
-                blendMode:kCGBlendModeCopy
-                    alpha:1.];
-    UIImage *croppedImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return croppedImage;
-}
 
 @end
