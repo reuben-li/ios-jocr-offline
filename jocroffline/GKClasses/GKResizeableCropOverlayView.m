@@ -160,7 +160,7 @@
 }
 
 -(void)_resizeWithTouchPoint:(CGPoint)point{
-    //This is the place where all the magic happends
+    //This is the place where all the magic happens
     //prevent goint offscreen...
     CGFloat border = kBorderCorrectionValue*2;
     point.x = point.x < border ? border : point.x;

@@ -8,6 +8,7 @@
 
 #import "GKImagePicker.h"
 #import "GKImageCropViewController.h"
+#import "Tesseract.h"
 
 @interface GKImagePicker ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, GKImageCropControllerDelegate>
 @property (nonatomic, strong, readwrite) UIImagePickerController *imagePickerController;
@@ -34,6 +35,8 @@
         _imagePickerController = [[UIImagePickerController alloc] init];
         _imagePickerController.delegate = self;
         _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;;
+        //_imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;;
+
     }
     return self;
 }
@@ -69,7 +72,7 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-
+    //NSLog(@"finishmedia");
     GKImageCropViewController *cropController = [[GKImageCropViewController alloc] init];
     cropController.contentSizeForViewInPopover = picker.contentSizeForViewInPopover;
     cropController.sourceImage = [info objectForKey:UIImagePickerControllerOriginalImage];
@@ -80,14 +83,29 @@
     
 }
 
+
 #pragma mark -
 #pragma GKImagePickerDelegate
 
 - (void)imageCropController:(GKImageCropViewController *)imageCropController didFinishWithCroppedImage:(UIImage *)croppedImage{
-    
+   // NSLog(@"finishcrop");
     if ([self.delegate respondsToSelector:@selector(imagePicker:pickedImage:)]) {
         [self.delegate imagePicker:self pickedImage:croppedImage];   
     }
-}
+    //NSLog(@"finishcrop2");
+    Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"jpn"];
+    [tesseract setImage:croppedImage];
+    [tesseract recognize];
+    NSString *output = [tesseract recognizedText];
+      
+    NSLog(output);
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    // saving a string
+    [prefs setObject:output forKey:@"stringVal"];
+    //[prefs synchronize];
+   // NSLog(@"1");
+    [self _hideController];
+
+    }
 
 @end

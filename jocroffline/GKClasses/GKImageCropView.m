@@ -98,14 +98,20 @@ static CGRect GKScaleRect(CGRect rect, CGFloat scale)
     
     //renders the the zoomed area into the cropped image
     if (self.resizableCropArea){
+                
         GKResizeableCropOverlayView* resizeableView = (GKResizeableCropOverlayView*)self.cropOverlayView;
         UIGraphicsBeginImageContextWithOptions(CGSizeMake(resizeableView.contentView.frame.size.width, resizeableView.contentView.frame.size.height), self.scrollView.opaque, 0.0);
         CGContextRef ctx = UIGraphicsGetCurrentContext();
+
+
         
         CGFloat xPositionInScrollView = resizeableView.contentView.frame.origin.x + self.scrollView.contentOffset.x - self.xOffset;
         CGFloat yPositionInScrollView = resizeableView.contentView.frame.origin.y + self.scrollView.contentOffset.y - self.yOffset;
         CGContextTranslateCTM(ctx, -(xPositionInScrollView), -(yPositionInScrollView));
 		
+        
+
+        
 		[self.scrollView.layer renderInContext:UIGraphicsGetCurrentContext()];
 		UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
@@ -192,6 +198,9 @@ static CGRect GKScaleRect(CGRect rect, CGFloat scale)
     
         
         self.scrollView.minimumZoomScale = CGRectGetWidth(self.scrollView.frame) / CGRectGetWidth(self.imageView.frame);
+        
+//        self.scrollView.minimumZoomScale =  CGRectGetWidth(self.imageView.frame);
+        
         self.scrollView.maximumZoomScale = 20.0;
         [self.scrollView setZoomScale:1.0];
     }

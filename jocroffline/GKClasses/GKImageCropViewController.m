@@ -15,6 +15,8 @@
 @property (nonatomic, strong) UIToolbar *toolbar;
 @property (nonatomic, strong) UIButton *cancelButton;
 @property (nonatomic, strong) UIButton *useButton;
+@property (nonatomic, copy) NSString *translated ;
+
 
 - (void)_actionCancel;
 - (void)_actionUse;
@@ -45,6 +47,7 @@
 - (void)_actionUse{
     _croppedImage = [self.imageCropView croppedImage];
     [self.delegate imageCropController:self didFinishWithCroppedImage:_croppedImage];
+ 
 }
 
 
@@ -80,7 +83,7 @@
     [[self.cancelButton titleLabel] setFont:[UIFont boldSystemFontOfSize:11]];
     [[self.cancelButton titleLabel] setShadowOffset:CGSizeMake(0, 1)];
     [self.cancelButton setFrame:CGRectMake(0, 0, 50, 30)];
-    [self.cancelButton setTitle:NSLocalizedString(@"GKIcancel",@"") forState:UIControlStateNormal];
+    [self.cancelButton setTitle:NSLocalizedString(@"Cancel",@"") forState:UIControlStateNormal];
     [self.cancelButton setTitleColor:[UIColor colorWithRed:0.173 green:0.176 blue:0.176 alpha:1] forState:UIControlStateNormal];
     [self.cancelButton setTitleShadowColor:[UIColor colorWithRed:0.827 green:0.831 blue:0.839 alpha:1] forState:UIControlStateNormal];
     [self.cancelButton  addTarget:self action:@selector(_actionCancel) forControlEvents:UIControlEventTouchUpInside];
@@ -97,7 +100,7 @@
     [[self.useButton titleLabel] setFont:[UIFont boldSystemFontOfSize:11]];
     [[self.useButton titleLabel] setShadowOffset:CGSizeMake(0, -1)];
     [self.useButton setFrame:CGRectMake(0, 0, 50, 30)];
-    [self.useButton setTitle:NSLocalizedString(@"GKIuse",@"") forState:UIControlStateNormal];
+    [self.useButton setTitle:NSLocalizedString(@"OCR",@"") forState:UIControlStateNormal];
     [self.useButton setTitleShadowColor:[UIColor colorWithRed:0.118 green:0.247 blue:0.455 alpha:1] forState:UIControlStateNormal];
     [self.useButton  addTarget:self action:@selector(_actionUse) forControlEvents:UIControlEventTouchUpInside];
     
@@ -136,7 +139,7 @@
         [self _setupUseButton];
         
         UILabel *info = [[UILabel alloc] initWithFrame:CGRectZero];
-        info.text = NSLocalizedString(@"GKImoveAndScale", @"");
+        info.text = NSLocalizedString(@"Zoom and Crop", @"");
         info.textColor = [UIColor colorWithRed:0.173 green:0.173 blue:0.173 alpha:1];
         info.backgroundColor = [UIColor clearColor];
         info.shadowColor = [UIColor colorWithRed:0.827 green:0.831 blue:0.839 alpha:1];

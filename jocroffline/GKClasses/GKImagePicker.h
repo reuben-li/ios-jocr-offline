@@ -10,13 +10,15 @@
 
 @protocol GKImagePickerDelegate;
 
+//static NSString *outer = @" ";
 @interface GKImagePicker : NSObject
 
 @property (nonatomic, weak) id<GKImagePickerDelegate> delegate;
 @property (nonatomic, assign) CGSize cropSize; //default value is 320x320 (which is exactly the same as the normal imagepicker uses)
 @property (nonatomic, strong, readonly) UIImagePickerController *imagePickerController;
 @property (nonatomic, assign) BOOL resizeableCropArea;
-
+//@property (nonatomic, retain) NSString *translated;
+//@property (weak, nonatomic) IBOutlet UITextField *textField1;
 @end
 
 

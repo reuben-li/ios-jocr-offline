@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B7CF99E178558C300DC5B7A /* UIImage+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7CF99D178558C300DC5B7A /* UIImage+Extras.m */; };
 		1B7CF9AB1785645900DC5B7A /* GKCropBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7CF9A01785645800DC5B7A /* GKCropBorderView.m */; };
 		1B7CF9AC1785645900DC5B7A /* GKImageCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7CF9A21785645800DC5B7A /* GKImageCropOverlayView.m */; };
 		1B7CF9AD1785645900DC5B7A /* GKImageCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7CF9A41785645800DC5B7A /* GKImageCropView.m */; };
@@ -71,8 +70,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1B7CF99C178558C300DC5B7A /* UIImage+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extras.h"; sourceTree = "<group>"; };
-		1B7CF99D178558C300DC5B7A /* UIImage+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extras.m"; sourceTree = "<group>"; };
 		1B7CF99F1785645800DC5B7A /* GKCropBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GKCropBorderView.h; path = GKClasses/GKCropBorderView.h; sourceTree = "<group>"; };
 		1B7CF9A01785645800DC5B7A /* GKCropBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GKCropBorderView.m; path = GKClasses/GKCropBorderView.m; sourceTree = "<group>"; };
 		1B7CF9A11785645800DC5B7A /* GKImageCropOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GKImageCropOverlayView.h; path = GKClasses/GKImageCropOverlayView.h; sourceTree = "<group>"; };
@@ -582,8 +579,6 @@
 				1BF8126B176D17A9005308B0 /* ViewController.h */,
 				1BF8126C176D17A9005308B0 /* ViewController.m */,
 				1BF81254176D17A9005308B0 /* Supporting Files */,
-				1B7CF99C178558C300DC5B7A /* UIImage+Extras.h */,
-				1B7CF99D178558C300DC5B7A /* UIImage+Extras.m */,
 			);
 			path = jocroffline;
 			sourceTree = "<group>";
@@ -772,7 +767,6 @@
 				1BF8125E176D17A9005308B0 /* AppDelegate.m in Sources */,
 				1BF8126D176D17A9005308B0 /* ViewController.m in Sources */,
 				1BA65CE317810EE400A8FE2E /* Tesseract.mm in Sources */,
-				1B7CF99E178558C300DC5B7A /* UIImage+Extras.m in Sources */,
 				1B7CF9AB1785645900DC5B7A /* GKCropBorderView.m in Sources */,
 				1B7CF9AC1785645900DC5B7A /* GKImageCropOverlayView.m in Sources */,
 				1B7CF9AD1785645900DC5B7A /* GKImageCropView.m in Sources */,

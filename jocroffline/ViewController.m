@@ -9,7 +9,17 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import "GKImagePicker.h"
+#import "GKImageCropViewController.h"
+#import "GKImageCropView.h"
 
+
+//TO FIX
+
+//spaces after ocr text
+//seekbar
+//zoom crop
+
+int static level = 0;
 
 @interface ViewController()
 @end
@@ -34,15 +44,33 @@
     UIGraphicsEndImageContext();
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    self.slider.value=0;
+    level=self.slider.value;
+    NSString *tt = @" ";
+    if (level < 0.5) { tt = @"Exact match";}
+    else tt = @"Extensive search";
     
-    Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"jpn"];
-    [tesseract setImage:[UIImage imageNamed:@"ninja.png"]];
-    [tesseract recognize];
-    
-    NSLog(@"%@", [tesseract recognizedText]);
-    
+    self.label.text= tt;
 }
 
+
+
+
+- (void)viewWillAppear:(BOOL)animated{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    // getting the string
+    NSString *term=[prefs stringForKey:@"stringVal"];
+    term = [term stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    self.textField1.text=term;
+    NSLog(@"2");
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"stringVal"];
+    
+    //prevent null pointer query at start
+    if (term !=nil) {
+    [self query: term];
+    }
+    
+}
 
 
 - (void)didReceiveMemoryWarning
@@ -57,53 +85,183 @@
     self.searchterm = self.textField1.text;
     NSString *nameString = self.searchterm;
     if ([nameString length]==0){
-        nameString = @"World";
+        nameString = @" ";
     }
     
+    [self query: nameString];
+         
+}
 
-    // Setup the database object
-	sqlite3 *database;
-    NSString *aName=@"jaja";
-	// Init the animals Array
-//	animals = [[NSMutableArray alloc] init];
-//    NSString *databaseName = @"jocr2";
- //   NSMutableArray *resultArray = [[NSMutableArray alloc]init];
-resultArray = [[NSMutableArray alloc]init];
-// Get the path to the documents directory and append the databaseName
-//	NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//	NSString *documentsDir = [documentPaths objectAtIndex:0];
-//	NSString *databasePath = [documentsDir stringByAppendingPathComponent:databaseName];	// Open the database from the users filessytem
+- (void)query:(NSString*)term{
+
+    sqlite3 *database;
+    NSString *aName=@" ";
     
-    
+    resultArray = [[NSMutableArray alloc]init];
     NSArray *arrayPathComponent=[NSArray arrayWithObjects:NSHomeDirectory(),@"Documents",@"jocr2.sqlite",nil];
     NSString *databasePath=[NSString pathWithComponents:arrayPathComponent];
   	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
-        NSLog(@"yes");
+    NSString *sqls;
+        
+        
 		// Setup the SQL Statement and compile it for faster access
-        NSString *sqls = [NSString stringWithFormat:@"select _id from data2 where _id MATCH \"%@\"", nameString ];
-		const char *sqlStatement = [sqls UTF8String];
-		sqlite3_stmt *compiledStatement;
-    		if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
-			// Loop through the results and add them to the feeds array
-			while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
-				// Read the data from the result row
-			aName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)];
-                 [resultArray addObject:aName];
+        if (level < 0.5)
+        {
+            sqls = [NSString stringWithFormat:@"select _id from data2 where _id MATCH \"%@\"", term ];
+            const char *sqlStatement = [sqls UTF8String];
+            sqlite3_stmt *compiledStatement;
+            if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK)
+            {
+                // Loop through the results and add them to the feeds array
+                while(sqlite3_step(compiledStatement) == SQLITE_ROW)
+                {
+                    // Read the data from the result row
+                    aName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)];
+                    [resultArray addObject:aName];
+                }
+                
+            }
+            // Release the compiled statement from memory
+            sqlite3_finalize(compiledStatement);
+        }
+		else
+        {
+            NSRegularExpression *regex = [[NSRegularExpression alloc]
+                                           initWithPattern:@"[a-zA-Z]" options:0 error:NULL];
+            // Assuming you have some NSString `myString`.
+            NSUInteger matches = [regex numberOfMatchesInString:term options:0
+                                                        range:NSMakeRange(0, [term length])];
+            if (matches > 0) {
+            // `myString` contains at least one English letter.
+                NSArray * words = [term componentsSeparatedByString:@" "];
+            //    NSMutableArray * mutableWords = [NSMutableArray new];
+                for (NSString * word in words){
+                    if ([word length] > 0 && [word characterAtIndex:0] == '#'){
+                        NSString * editedWord = [word substringFromIndex:1];
+              //          [mutableWords addObject:editedWord];
+                        sqls = [NSString stringWithFormat:@"select _id from data2 where _id MATCH \"%@\"", editedWord ];
+                        const char *sqlStatement = [sqls UTF8String];
+                        sqlite3_stmt *compiledStatement;
+                        if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK)
+                        {
+                            // Loop through the results and add them to the feeds array
+                            while(sqlite3_step(compiledStatement) == SQLITE_ROW)
+                            {
+                                // Read the data from the result row
+                                aName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)];
+                                [resultArray addObject:aName];
+                            }
+                            
+                        }
+                        // Release the compiled statement from memory
+                        sqlite3_finalize(compiledStatement);
+                    }
+                }
+            }
+            //perform japanese separation
+            else
+            {
+                int num = [term length];
+                
+                if (num>3)
+                {
+                    for (int i=0; i<num-2; i++)
+                    {
+                        //NSRange end = [term rangeOfString:@";"];
+                        NSString *shortString =[term substringWithRange:NSMakeRange(i, 3)];
+                        sqls = [NSString stringWithFormat:@"select _id from data2 where _id MATCH \"%@\"", shortString];
+                        const char *sqlStatement = [sqls UTF8String];
+                        sqlite3_stmt *compiledStatement;
+                        if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK)
+                        {
+                            // Loop through the results and add them to the feeds array
+                            while(sqlite3_step(compiledStatement) == SQLITE_ROW)
+                            {
+                                // Read the data from the result row
+                                aName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)];
+                                [resultArray addObject:aName];
+                            }
+                            
+                        }
+                        // Release the compiled statement from memory
+                        sqlite3_finalize(compiledStatement);
+                    }
+
+                }
+                
+                if (num > 2)
+                {
+                    for (int i=0; i<num-1; i++)
+                    {
+                    //NSRange end = [term rangeOfString:@";"];
+                    NSString *shortString =[term substringWithRange:NSMakeRange(i, 2)];
+                    sqls = [NSString stringWithFormat:@"select _id from data2 where _id MATCH \"%@\"", shortString];
+                        const char *sqlStatement = [sqls UTF8String];
+                        sqlite3_stmt *compiledStatement;
+                        if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK)
+                        {
+                            // Loop through the results and add them to the feeds array
+                            while(sqlite3_step(compiledStatement) == SQLITE_ROW)
+                            {
+                                // Read the data from the result row
+                                aName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)];
+                                [resultArray addObject:aName];
+                            }
+                            
+                        }
+                        // Release the compiled statement from memory
+                        sqlite3_finalize(compiledStatement);
+                    }
+                }
+                else
+                {
+                NSString *shortString =[term substringWithRange:NSMakeRange(0, 1)];
+                sqls = [NSString stringWithFormat:@"select _id from data2 where _id MATCH \"%@\"", shortString];
+                    const char *sqlStatement = [sqls UTF8String];
+                    sqlite3_stmt *compiledStatement;
+                    if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK)
+                    {
+                        // Loop through the results and add them to the feeds array
+                        while(sqlite3_step(compiledStatement) == SQLITE_ROW)
+                        {
+                            // Read the data from the result row
+                            aName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)];
+                            [resultArray addObject:aName];
+                        }
+                        
+                    }
+                    // Release the compiled statement from memory
+                    sqlite3_finalize(compiledStatement);
+                shortString =[term substringWithRange:NSMakeRange(1, 1)];
+                sqls = [NSString stringWithFormat:@"select _id from data2 where _id MATCH \"%@\"", shortString];
+                    sqlStatement = [sqls UTF8String];
+                    if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK)
+                    {
+                        // Loop through the results and add them to the feeds array
+                        while(sqlite3_step(compiledStatement) == SQLITE_ROW)
+                        {
+                            // Read the data from the result row
+                            aName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)];
+                            [resultArray addObject:aName];
+                        }
+                        
+                    }
+                    // Release the compiled statement from memory
+                    sqlite3_finalize(compiledStatement);
+                    
+                }
             }
             
-		}
-        
-		// Release the compiled statement from memory
-		sqlite3_finalize(compiledStatement);
+            
+            //sqls = [NSString stringWithFormat:@"select _id from data2 where _id MATCH \"%@\"", term ];
+        }
+
         
 	}
 	sqlite3_close(database);
 	[_table1 reloadData];
-    
-       
+   
 }
-
-
 
 
 - (IBAction)find:(id)sender {
@@ -111,62 +269,29 @@ resultArray = [[NSMutableArray alloc]init];
     self.searchterm = self.textField1.text;
     NSString *nameString = self.searchterm;
     if ([nameString length]==0){
-        nameString = @"World";
+        nameString = @" ";
     }
     
+    [self query: nameString];	// Init the animals Array
     
-    // Setup the database object
-	sqlite3 *database;
-    NSString *aName=@"jaja";
-	// Init the animals Array
-    //	animals = [[NSMutableArray alloc] init];
-    //   NSMutableArray *resultArray = [[NSMutableArray alloc]init];
-    resultArray = [[NSMutableArray alloc]init];
-    // Get the path to the documents directory and append the databaseName
-
-
-    NSArray *arrayPathComponent=[NSArray arrayWithObjects:NSHomeDirectory(),@"Documents",@"jocr2.sqlite",nil];
-    NSString *databasePath=[NSString pathWithComponents:arrayPathComponent];
-    
-    
-    NSLog(databasePath);// Open the database from the users filessytem
-  	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
-        NSLog(@"database OK");
-		// Setup the SQL Statement and compile it for faster access
-        NSString *sqls = [NSString stringWithFormat:@"SELECT * FROM data2 WHERE _id MATCH \"%@\"",
-                          nameString ];
-		const char *sqlStatement = [sqls UTF8String];
-		sqlite3_stmt *compiledStatement;
-        NSLog(sqls);
-        if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
-			// Loop through the results and add them to the feeds array
-             NSLog(@"query OK");
-			while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
-				// Read the data from the result row
-                aName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)];
-            //    NSLog(aName);
-                [resultArray addObject:aName];
-         
-            }
-            
-		}
-        else
-        {
-      //  NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(database));
-        }
-		// Release the compiled statement from memory
-		sqlite3_finalize(compiledStatement);
-        
-	}
-	sqlite3_close(database);
-	[_table1 reloadData];
-   // NSLog(resultArray[1]);
-    
+    if ([self.textField1 canResignFirstResponder]) [self.textField1 resignFirstResponder];
 }
 
 - (IBAction)ocr:(id)sender {
     [self startCameraControllerFromViewController: self
                                     usingDelegate: self];
+    
+    
+  
+}
+
+- (IBAction)sliderchange:(id)sender {
+    level = self.slider.value;
+    NSString *tt = @" ";
+    if (level < 0.5) { tt = @"Exact match";}
+    else tt = @"Extensive search";
+    
+    self.label.text= tt;
 }
 
 
@@ -204,94 +329,17 @@ resultArray = [[NSMutableArray alloc]init];
 - (BOOL) startCameraControllerFromViewController: (UIViewController*) controller
                                    usingDelegate: (id <UIImagePickerControllerDelegate,
                                                    UINavigationControllerDelegate>) delegate {
+
     
-    if (([UIImagePickerController isSourceTypeAvailable:
-          UIImagePickerControllerSourceTypeCamera] == NO)
-        || (delegate == nil)
-        || (controller == nil))
-        return NO;
-    
-    
-    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
- //   UIImagePickerController *cameraUI = [[GKImagePicker alloc] init];
-    
+//    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
     self.imagePicker = [[GKImagePicker alloc] init];
-    self.imagePicker.cropSize = CGSizeMake(296, 300);
+   // self.imagePicker.cropSize = CGSizeMake(300, 100.);
     self.imagePicker.delegate = self;
 	self.imagePicker.resizeableCropArea = YES;
-    
-
-    
-    //    [self presentModalViewController:self.imagePicker.imagePickerController animated:YES];
-
-
-    
-    
-    
-    cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
-    
-    // Displays a control that allows the user to choose picture or
-    // movie capture, if both are available:
-    cameraUI.mediaTypes =
-    [UIImagePickerController availableMediaTypesForSourceType:
-     UIImagePickerControllerSourceTypeCamera];
-    
- //   cameraUI.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
-    
-    // Hides the controls for moving & scaling pictures, or for
-    // trimming movies. To instead show the controls, use YES.
-    cameraUI.allowsEditing = YES;
-    cameraUI.delegate = delegate;
-//    [self presentViewController:cameraUI animated:YES completion:nil];
     [self presentViewController:self.imagePicker.imagePickerController animated:YES completion:nil];
-
-//    [controller presentViewController: cameraUI animated: YES];
-    return YES;
+           return YES;
 }
 
 
-- (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
-    [[picker presentingViewController] dismissViewControllerAnimated:YES completion:nil];
-    return;
-}
-
-- (void) imagePickerController: (UIImagePickerController *) picker
-didFinishPickingMediaWithInfo: (NSDictionary *) info {
-    
-    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
-    UIImage *originalImage, *editedImage, *imageToSave;
-    
-    // Handle a still image capture
-    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeImage, 0)
-        == kCFCompareEqualTo) {
-        
-        editedImage = (UIImage *) [info objectForKey:
-                                   UIImagePickerControllerEditedImage];
-        originalImage = (UIImage *) [info objectForKey:
-                                     UIImagePickerControllerOriginalImage];
-
-        if (editedImage) {
-            imageToSave = editedImage;
-        } else {
-            imageToSave = originalImage;
-        }
-        
-        
-               
-   //     CGSize targetSize = CGSizeMake(30, 40);
-        
-   //     imageToSave = [imageToSave imageByScalingAndCroppingForSize:(CGSize)targetSize];
-        
-        // Save the new image (original or edited) to the Camera Roll
-        UIImageWriteToSavedPhotosAlbum (imageToSave, nil, nil , nil);
-    }
-    
-    
-    [[picker presentingViewController] dismissViewControllerAnimated:YES completion:nil];
-        
- //   [[picker parentViewController] dismissModalViewControllerAnimated: YES];
- }
-
-//image cropper
 
 @end
