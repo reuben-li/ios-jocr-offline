@@ -81,6 +81,9 @@ int static level = 0;
 
 
 
+- (IBAction)settings:(id)sender {
+}
+
 - (IBAction)enter:(id)sender {
     self.searchterm = self.textField1.text;
     NSString *nameString = self.searchterm;
@@ -89,8 +92,11 @@ int static level = 0;
     }
     
     [self query: nameString];
-         
+    
+
 }
+
+
 
 - (void)query:(NSString*)term{
 
@@ -98,7 +104,7 @@ int static level = 0;
     NSString *aName=@" ";
     
     resultArray = [[NSMutableArray alloc]init];
-    NSArray *arrayPathComponent=[NSArray arrayWithObjects:NSHomeDirectory(),@"Documents",@"jocr2.sqlite",nil];
+    NSArray *arrayPathComponent=[NSArray arrayWithObjects:NSHomeDirectory(),@"Library/Caches",@"jocr2.sqlite",nil];
     NSString *databasePath=[NSString pathWithComponents:arrayPathComponent];
   	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
     NSString *sqls;
@@ -126,6 +132,24 @@ int static level = 0;
         }
 		else
         {
+            sqls = [NSString stringWithFormat:@"select _id from data2 where _id MATCH \"%@\"", term ];
+            const char *sqlStatement = [sqls UTF8String];
+            sqlite3_stmt *compiledStatement;
+            if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK)
+            {
+                // Loop through the results and add them to the feeds array
+                while(sqlite3_step(compiledStatement) == SQLITE_ROW)
+                {
+                    // Read the data from the result row
+                    aName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)];
+                    [resultArray addObject:aName];
+                }
+                
+            }
+            // Release the compiled statement from memory
+            sqlite3_finalize(compiledStatement);
+            
+            
             NSRegularExpression *regex = [[NSRegularExpression alloc]
                                            initWithPattern:@"[a-zA-Z]" options:0 error:NULL];
             // Assuming you have some NSString `myString`.
@@ -189,7 +213,7 @@ int static level = 0;
 
                 }
                 
-                if (num > 2)
+                if (num >2)
                 {
                     for (int i=0; i<num-1; i++)
                     {
@@ -213,7 +237,7 @@ int static level = 0;
                         sqlite3_finalize(compiledStatement);
                     }
                 }
-                else
+                else if (num == 2)
                 {
                 NSString *shortString =[term substringWithRange:NSMakeRange(0, 1)];
                 sqls = [NSString stringWithFormat:@"select _id from data2 where _id MATCH \"%@\"", shortString];
@@ -250,7 +274,7 @@ int static level = 0;
                     sqlite3_finalize(compiledStatement);
                     
                 }
-            }
+                           }
             
             
             //sqls = [NSString stringWithFormat:@"select _id from data2 where _id MATCH \"%@\"", term ];
@@ -342,4 +366,13 @@ int static level = 0;
 
 
 
+- (IBAction)help:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Search Modes"
+                                                    message:@"[Exact Match] looks for words that match the entire query. [Extensive Search] breaks the query into parts and searches each of these parts.\n\n OCR function works best with printed text on plain backgrounds. Use pinching and scrolling to zoom in and out and to move the crop box. Images with a mix of Kanji and Kana may result in lower rates of accuracy."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    
+}
 @end

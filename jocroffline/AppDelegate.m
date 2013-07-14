@@ -22,7 +22,7 @@
 //	NSString *documentsDir = [documentPaths objectAtIndex:0];
 //	databasePath = [documentsDir stringByAppendingPathComponent:databaseName];
     
-        NSArray *arrayPathComponent=[NSArray arrayWithObjects:NSHomeDirectory(),@"Documents",@"jocr2.sqlite",nil];
+        NSArray *arrayPathComponent=[NSArray arrayWithObjects:NSHomeDirectory(),@"Library/Caches",@"jocr2.sqlite",nil];
         databasePath=[NSString pathWithComponents:arrayPathComponent];
 
 	[self checkAndCreateDatabase];
@@ -36,6 +36,24 @@
     
     
     return YES;
+}
+
+- (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL
+{
+    
+    
+    NSArray *arrayPathComponent=[NSArray arrayWithObjects:NSHomeDirectory(),@"Library/Caches",@"jocr2.sqlite",nil];
+    databasePath=[NSString pathWithComponents:arrayPathComponent];
+
+    assert([[NSFileManager defaultManager] fileExistsAtPath: databasePath]);
+    
+    NSError *error = nil;
+    BOOL success = [URL setResourceValue: [NSNumber numberWithBool: YES]
+                                  forKey: NSURLIsExcludedFromBackupKey error: &error];
+    if(!success){
+        NSLog(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
+    }
+    return success;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

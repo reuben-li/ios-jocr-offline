@@ -21,6 +21,7 @@
 		1B7CF9BE1785646400DC5B7A /* PLCameraSheetDoneButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7CF9B61785646400DC5B7A /* PLCameraSheetDoneButton@2x.png */; };
 		1B7CF9BF1785646400DC5B7A /* PLCameraSheetDoneButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7CF9B71785646400DC5B7A /* PLCameraSheetDoneButtonPressed.png */; };
 		1B7CF9C01785646400DC5B7A /* PLCameraSheetDoneButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7CF9B81785646400DC5B7A /* PLCameraSheetDoneButtonPressed@2x.png */; };
+		1B9860511786A8C2004E29C5 /* ic_launcher copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B9860501786A8C2004E29C5 /* ic_launcher copy.png */; };
 		1BA29D0217847C8600B334BA /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA29D0117847C8600B334BA /* MobileCoreServices.framework */; };
 		1BA65CE317810EE400A8FE2E /* Tesseract.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BA65C4817810EE300A8FE2E /* Tesseract.mm */; };
 		1BA65CE417810EE400A8FE2E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1BA65C4917810EE300A8FE2E /* LICENSE */; };
@@ -30,7 +31,6 @@
 		1BA65CE817810EE400A8FE2E /* libtesseract_all.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA65CE117810EE400A8FE2E /* libtesseract_all.a */; };
 		1BA65CE917810EE400A8FE2E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1BA65CE217810EE400A8FE2E /* README.md */; };
 		1BA65CEB17810EEE00A8FE2E /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 1BA65CEA17810EEE00A8FE2E /* tessdata */; };
-		1BA65CED1781105200A8FE2E /* ninja.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA65CEC1781105200A8FE2E /* ninja.png */; };
 		1BA65CEE1783B78F00A8FE2E /* jocr2.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 1BFEE7441770B8E100897880 /* jocr2.sqlite */; };
 		1BF8124E176D17A9005308B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF8124D176D17A9005308B0 /* UIKit.framework */; };
 		1BF81250176D17A9005308B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF8124F176D17A9005308B0 /* Foundation.framework */; };
@@ -90,6 +90,7 @@
 		1B7CF9B61785646400DC5B7A /* PLCameraSheetDoneButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PLCameraSheetDoneButton@2x.png"; path = "GKImages/PLCameraSheetDoneButton@2x.png"; sourceTree = "<group>"; };
 		1B7CF9B71785646400DC5B7A /* PLCameraSheetDoneButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PLCameraSheetDoneButtonPressed.png; path = GKImages/PLCameraSheetDoneButtonPressed.png; sourceTree = "<group>"; };
 		1B7CF9B81785646400DC5B7A /* PLCameraSheetDoneButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PLCameraSheetDoneButtonPressed@2x.png"; path = "GKImages/PLCameraSheetDoneButtonPressed@2x.png"; sourceTree = "<group>"; };
+		1B9860501786A8C2004E29C5 /* ic_launcher copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_launcher copy.png"; sourceTree = "<group>"; };
 		1BA29D0117847C8600B334BA /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		1BA65C4717810EE300A8FE2E /* Tesseract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tesseract.h; sourceTree = "<group>"; };
 		1BA65C4817810EE300A8FE2E /* Tesseract.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Tesseract.mm; sourceTree = "<group>"; };
@@ -243,7 +244,6 @@
 		1BA65CE117810EE400A8FE2E /* libtesseract_all.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtesseract_all.a; sourceTree = "<group>"; };
 		1BA65CE217810EE400A8FE2E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		1BA65CEA17810EEE00A8FE2E /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
-		1BA65CEC1781105200A8FE2E /* ninja.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ninja.png; sourceTree = "<group>"; };
 		1BF8124A176D17A9005308B0 /* jocroffline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jocroffline.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BF8124D176D17A9005308B0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1BF8124F176D17A9005308B0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -514,6 +514,7 @@
 		1BF81241176D17A9005308B0 = {
 			isa = PBXGroup;
 			children = (
+				1B9860501786A8C2004E29C5 /* ic_launcher copy.png */,
 				1BA29D0117847C8600B334BA /* MobileCoreServices.framework */,
 				1BF81253176D17A9005308B0 /* jocroffline */,
 				1BFEE7421770B8CC00897880 /* libsqlite3.0.dylib */,
@@ -566,7 +567,6 @@
 				1B7CF9A81785645800DC5B7A /* GKImagePicker.m */,
 				1B7CF9A91785645800DC5B7A /* GKResizeableCropOverlayView.h */,
 				1B7CF9AA1785645800DC5B7A /* GKResizeableCropOverlayView.m */,
-				1BA65CEC1781105200A8FE2E /* ninja.png */,
 				1BA65CEA17810EEE00A8FE2E /* tessdata */,
 				1BA65C4517810EE300A8FE2E /* tesseract-ios */,
 				1BA65C4B17810EE300A8FE2E /* tesseract-ios-lib */,
@@ -720,7 +720,6 @@
 				1BA65CE617810EE400A8FE2E /* .gitignore in Resources */,
 				1BA65CE917810EE400A8FE2E /* README.md in Resources */,
 				1BA65CEB17810EEE00A8FE2E /* tessdata in Resources */,
-				1BA65CED1781105200A8FE2E /* ninja.png in Resources */,
 				1B7CF9B91785646400DC5B7A /* PLCameraSheetButton.png in Resources */,
 				1B7CF9BA1785646400DC5B7A /* PLCameraSheetButton@2x.png in Resources */,
 				1B7CF9BB1785646400DC5B7A /* PLCameraSheetButtonPressed.png in Resources */,
@@ -729,6 +728,7 @@
 				1B7CF9BE1785646400DC5B7A /* PLCameraSheetDoneButton@2x.png in Resources */,
 				1B7CF9BF1785646400DC5B7A /* PLCameraSheetDoneButtonPressed.png in Resources */,
 				1B7CF9C01785646400DC5B7A /* PLCameraSheetDoneButtonPressed@2x.png in Resources */,
+				1B9860511786A8C2004E29C5 /* ic_launcher copy.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,6 +842,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Reuben Li (48CZTXSM5M)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -857,6 +858,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "DFCE4065-2512-426D-AC93-AE247756EEF4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -874,6 +876,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Reuben Li (48CZTXSM5M)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -882,6 +885,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "DFCE4065-2512-426D-AC93-AE247756EEF4";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -905,6 +909,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -926,6 +931,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -19,11 +19,13 @@
 @property (copy,nonatomic) NSString *searchterm;
 @property (copy,nonatomic) NSArray *resultArray;
 @property (copy,nonatomic) NSArray *theArray;
+- (IBAction)help:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *table1;
 @property (nonatomic, copy) NSArray *mediaTypes;
 @property (nonatomic, strong) GKImagePicker *imagePicker;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 
+- (IBAction)settings:(id)sender;
 - (IBAction)enter:(id)sender;
 - (IBAction)ocrbutton:(id)sender;
 

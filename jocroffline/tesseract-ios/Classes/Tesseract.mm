@@ -57,7 +57,7 @@ namespace tesseract {
     
     // Useful paths
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentPath = ([documentPaths count] > 0) ? [documentPaths objectAtIndex:0] : nil;
     NSString *dataPath = [documentPath stringByAppendingPathComponent:_dataPath];
     
